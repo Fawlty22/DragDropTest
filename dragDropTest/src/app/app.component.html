@@ -1,0 +1,21 @@
+<p>The default dropzone.</p>
+
+<ngx-dropzone (change)="onFilesAdded($event)" [expandable]="true">
+	<ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+	<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+		<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+	</ngx-dropzone-preview>
+</ngx-dropzone>
+
+<p>A custom dropzone.</p>
+
+<div class="custom-dropzone" ngx-dropzone [expandable]="true"  (change)="onFilesAdded($event)">
+	<ngx-dropzone-label>
+		<div>
+			<h3>My custom dropzone</h3>
+		</div>
+	</ngx-dropzone-label>
+	<ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+		<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+	</ngx-dropzone-image-preview>
+</div>
