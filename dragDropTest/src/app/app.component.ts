@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import {
   S3Client,
   PutObjectCommand,
@@ -15,12 +16,12 @@ export class AppComponent implements OnInit {
   title = 'dragDropTest';
   files: File[] = [];
   imageURL: any;
-  fileToGet: string = '2560x1600-neo-ukiyo-e-plains.jpg';
+  fileToGet: string = 'Arctic-Treeline-Kaldheim-MtG-Art.jpg';
   // fileToSend: string | undefined;
   bucketName: string = 'dragdropbucket22';
   bucketRegion: string = 'us-east-1';
-  accessKey: string = 'AKIAXB4AS56573Z5C3ZK';
-  secretAccessKey: string = '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';
+  accessKey: string = environment.accessKey;
+  secretAccessKey: string = environment.secretKey;
   s3: S3Client = new S3Client({
     credentials: {
       accessKeyId: this.accessKey,
@@ -62,7 +63,7 @@ export class AppComponent implements OnInit {
           Bucket: this.bucketName,
           Key: this.files[i].name,
           Body: buffer,
-          ContentType: 'image/jpeg',
+          ContentType: 'application/x-zip-compressed',
         };
 
         const command = new PutObjectCommand(params);
@@ -106,7 +107,7 @@ export class AppComponent implements OnInit {
   }
 
   detectFileType(name: string) {
-    let allowedExtensions = /(\.pdf|\.cad)$/i;
+    let allowedExtensions = /(\.pdf|\.cad|\.jpg|\.zip)$/i;
     if (!allowedExtensions.exec(name)) {
       return false;
     } else {
