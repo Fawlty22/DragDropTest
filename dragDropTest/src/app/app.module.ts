@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import  {  PdfViewerModule  }  from  'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     NgxDropzoneModule,
     HttpClientModule,
+    PdfViewerModule,
     AppRoutingModule
   ],
   providers: [],

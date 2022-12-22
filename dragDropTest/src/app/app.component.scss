@@ -19,3 +19,12 @@
   .custom-dropzone:hover {
     border: 5px solid rgb(235, 79, 79);
   }
+
+  pdf-viewer {
+    display: flex;
+    height: 500px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(5px 5px 5px #222222);
+  }

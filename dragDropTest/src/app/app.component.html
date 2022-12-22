@@ -22,7 +22,13 @@
 
 <button (click)="onUpload()" type="button" style="background-color: aqua; display: block; width: 50%; height: 100px; cursor: pointer; border-radius: 10px; margin: auto;">Upload</button>
 
+<div>{{imageURL}}</div>
 <img src="{{imageURL}}" style="height: 200px; width: 200px;" alt="" *ngIf="imageURL">
-<div *ngIf="imageURL">
-  {{imageURL}}
-</div>
+
+<!-- <div class="container">
+  <pdf-viewer [src]="imageURL"
+              [original-size]="false"
+              *ngIf="imageURL"
+  ></pdf-viewer>
+</div> -->
+
