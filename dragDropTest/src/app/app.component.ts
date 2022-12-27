@@ -15,8 +15,9 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 export class AppComponent implements OnInit {
   title = 'dragDropTest';
   files: File[] = [];
+  pdfFileBuffer: any;
   imageURL: any;
-  fileToGet: string = 'Arctic-Treeline-Kaldheim-MtG-Art.jpg';
+  fileToGet: string = 'SmallPDF.pdf';
   // fileToSend: string | undefined;
   bucketName: string = 'dragdropbucket22';
   bucketRegion: string = 'us-east-1';
@@ -63,7 +64,7 @@ export class AppComponent implements OnInit {
           Bucket: this.bucketName,
           Key: this.files[i].name,
           Body: buffer,
-          ContentType: 'application/x-zip-compressed',
+          ContentType: 'application/pdf',
         };
 
         const command = new PutObjectCommand(params);
@@ -73,6 +74,7 @@ export class AppComponent implements OnInit {
         });
       }
     }
+    this.files = [];
   }
 
   async readFile(file: File): Promise<any> {
@@ -102,7 +104,7 @@ export class AppComponent implements OnInit {
   }
 
   onRemove(event: any) {
-    // console.log(event);
+    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 

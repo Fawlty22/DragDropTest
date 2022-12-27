@@ -1,30 +1,66 @@
-<ngx-dropzone (change)="onFilesAdded($event)" [expandable]="true">
-	<ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-	<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-		<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-	</ngx-dropzone-preview>
-</ngx-dropzone>
+<div id="container">
+  <div class="pdf-container">
+    <pdf-viewer
+      [src]="imageURL"
+      [original-size]="false"
+      [show-all]="false"
+      [page]="1"
+      [fit-to-page]="false"
+      [zoom]="0.9"
+      [zoom-scale]="'page-fit'"
+      [stick-to-page]="false"
+      [render-text]="true"
+      [external-link-target]="'blank'"
+      [autoresize]="true"
+      [show-borders]="true"
+      *ngIf="imageURL"
+    ></pdf-viewer>
+  </div>
 
-<!-- <div class="custom-dropzone" ngx-dropzone [expandable]="true"  (change)="onFilesAdded($event)">
-	<ngx-dropzone-label>
-		<div>
-			<h3>My custom dropzone</h3>
-		</div>
-	</ngx-dropzone-label>
-	<ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-		<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-	</ngx-dropzone-image-preview>
-</div> -->
+  <ngx-dropzone (change)="onFilesAdded($event)" [expandable]="true">
+    <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+    <!-- <ngx-dropzone-image-preview
+      *ngFor="let f of files"
+      [file]="f"
+      [removable]="true"
+      (removed)="onRemove(f)"
+    >
+      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+    </ngx-dropzone-image-preview> -->
+  </ngx-dropzone>
 
-<button (click)="onUpload()" type="button" style="background-color: aqua; display: block; width: 50%; height: 100px; cursor: pointer; border-radius: 10px; margin: auto;">Upload</button>
+  <!-- <div>{{imageURL}}</div> -->
+  <!-- <img src="{{imageURL}}" style="height: 300px; width: 500px; margin-top: 2rem;" alt="" *ngIf="imageURL"> -->
 
-<!-- <div>{{imageURL}}</div> -->
-<img src="{{imageURL}}" style="height: 300px; width: 500px;" alt="" *ngIf="imageURL">
+  <!-- <a href="{{imageURL}}" target="_blank" download></a> -->
+</div>
 
-<!-- <pdf-viewer [src]="imageURL"
-            [original-size]="false"
-            *ngIf="imageURL"
-></pdf-viewer> -->
+<div class="thumbnail-wrapper" *ngIf="files.length > 0">
+  <!-- <div class="thumbnail" *ngFor="let file of files, index as i">
+		<p>{{files[i].name}}</p>
+	</div> -->
+  <ngx-dropzone-preview
+    *ngFor="let f of files"
+    [file]="f"
+    [removable]="true"
+    (removed)="onRemove(f)"
+  >
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-preview>
+</div>
 
-<a href="{{imageURL}}" target="_blank" download> 
-</a>
+<button
+  (click)="onUpload()"
+  type="button"
+  style="
+    background-color: aqua;
+    display: block;
+    width: 50%;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: auto;
+  "
+>
+  Upload
+</button>
